@@ -7,57 +7,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+        :root {
+            --bg: #f5f5f7;
+            --surface: #ffffff;
+            --text: #1d1d1f;
+            --muted: #6e6e73;
+            --line: #e2e2e7;
+            --accent: #1d4f91;
+            --shadow: 0 14px 30px rgba(15, 23, 42, 0.07);
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f8;
-            color: #222;
-            line-height: 1.6;
+            font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
         }
 
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            width: min(980px, calc(100% - 2rem));
+            margin: 2rem auto;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
         }
 
         header {
-            border-bottom: 3px solid #002147;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
-        header h1 {
+        h1 {
             margin: 0;
-            color: #002147;
+            font-size: clamp(1.9rem, 3vw, 2.5rem);
+            letter-spacing: -0.01em;
+        }
+
+        header p {
+            margin: 0.45rem 0 0;
+            color: var(--muted);
         }
 
         .article-list {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .article-list li {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #ddd;
+            margin-bottom: 0.7rem;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+            background: #fbfbfd;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .article-list li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(17, 24, 39, 0.08);
+            border-color: #cfd2dc;
         }
 
         .article-title {
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
         }
 
         .article-meta {
             font-size: 0.9rem;
-            color: #666;
+            color: var(--muted);
         }
 
         a {
-            color: #1a73e8;
+            color: var(--accent);
             text-decoration: none;
         }
 
@@ -66,15 +99,45 @@
         }
 
         .back {
-            margin-top: 30px;
-            display: inline-block;
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 0.52rem 0.92rem;
+            color: #2f2f32;
+            background: #ffffff;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            background: #f4f4f6;
+            text-decoration: none;
         }
 
         footer {
             text-align: center;
-            padding: 1.5rem;
-            color: #777;
+            padding: 0.8rem 1rem 2rem;
+            color: var(--muted);
             font-size: 0.9rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                width: calc(100% - 1rem);
+                margin: 1rem auto;
+                border-radius: 16px;
+                padding: 1rem;
+            }
+
+            .article-list li {
+                padding: 0.75rem;
+            }
+
+            .article-title {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -82,14 +145,12 @@
 <body>
 
     <div class="container">
-
         <header>
             <h1>Articles</h1>
             <p>Notes, technical articles, and research-related writings.</p>
         </header>
 
         <ul class="article-list">
-
             <li>
                 <div class="article-title">
                     <a href="Article-1.html">Example Article with Figures</a>
@@ -110,7 +171,7 @@
 
             <li>
                 <div class="article-title">
-                    <a href="Article-2.html">Goodbye, 2024 — A Letter To Myself, A Reflection</a>
+                    <a href="Article-2.html">Goodbye, 2024 - A Letter To Myself, A Reflection</a>
                 </div>
                 <div class="article-meta">
                     Posted on 2025-01-01 · Keywords: Reflection
@@ -140,14 +201,12 @@
                     <a href="Article-6.html">Japan Geoscience Union Meeting 2026</a>
                 </div>
                 <div class="article-meta">
-                    Posted on 2026-2-9 · Keywords: JPGU, Conference
+                    Posted on 2026-02-09 · Keywords: JPGU, Conference
                 </div>
             </li>
-
         </ul>
 
         <a class="back" href="index.html">← Back to Home</a>
-
     </div>
 
     <footer>

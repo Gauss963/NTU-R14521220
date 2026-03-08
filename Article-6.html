@@ -31,6 +31,8 @@
         header h1 {
             margin-bottom: 5px;
             color: #002147;
+            line-height: 1.35;
+            word-break: break-word;
         }
 
         .meta {
@@ -110,6 +112,66 @@
             font-size: 0.85rem;
             color: #666;
             margin-top: 4px;
+        }
+        @media (max-width: 900px) {
+            .container {
+                margin: 18px auto;
+                width: calc(100% - 24px);
+                padding: 24px;
+            }
+        }
+        @media (max-width: 640px) {
+            body {
+                line-height: 1.65;
+            }
+
+            .container {
+                width: calc(100% - 16px);
+                margin: 10px auto;
+                padding: 16px;
+                border-radius: 6px;
+            }
+
+            header h1 {
+                font-size: 1.35rem;
+                margin-bottom: 8px;
+            }
+
+            .meta {
+                font-size: 0.9rem;
+            }
+
+            h2 {
+                margin-top: 28px;
+                font-size: 1.2rem;
+            }
+
+            p,
+            li {
+                font-size: 0.97rem;
+            }
+
+            figure {
+                margin: 20px auto;
+            }
+
+            .summary-img {
+                width: 100%;
+            }
+
+            blockquote {
+                margin: 20px 0;
+                padding: 12px 14px;
+            }
+
+            .link-card {
+                padding: 14px;
+                margin-bottom: 12px;
+            }
+
+            .back {
+                margin-top: 28px;
+            }
         }
     </style>
 </head>

@@ -3,61 +3,93 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Articles | Gauss Te-Chuan Chang</title>
+    <title>Projects | Gauss Te-Chuan Chang</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+        :root {
+            --bg: #f5f5f7;
+            --surface: #ffffff;
+            --text: #1d1d1f;
+            --muted: #6e6e73;
+            --line: #e2e2e7;
+            --accent: #1d4f91;
+            --shadow: 0 14px 30px rgba(15, 23, 42, 0.07);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f8;
-            color: #222;
-            line-height: 1.6;
+            font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
         }
 
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            width: min(980px, calc(100% - 2rem));
+            margin: 2rem auto;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
         }
 
         header {
-            border-bottom: 3px solid #002147;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
-        header h1 {
+        h1 {
             margin: 0;
-            color: #002147;
+            font-size: clamp(1.9rem, 3vw, 2.5rem);
+            letter-spacing: -0.01em;
         }
 
-        .article-list {
+        header p {
+            margin: 0.45rem 0 0;
+            color: var(--muted);
+        }
+
+        .project-list {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
-        .article-list li {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #ddd;
+        .project-list li {
+            margin-bottom: 0.7rem;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+            background: #fbfbfd;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
-        .article-title {
-            font-size: 1.2rem;
-            font-weight: bold;
+        .project-list li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(17, 24, 39, 0.08);
+            border-color: #cfd2dc;
         }
 
-        .article-meta {
+        .project-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .project-meta {
             font-size: 0.9rem;
-            color: #666;
+            color: var(--muted);
         }
 
         a {
-            color: #1a73e8;
+            color: var(--accent);
             text-decoration: none;
         }
 
@@ -66,105 +98,122 @@
         }
 
         .back {
-            margin-top: 30px;
-            display: inline-block;
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 0.52rem 0.92rem;
+            color: #2f2f32;
+            background: #ffffff;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            background: #f4f4f6;
+            text-decoration: none;
         }
 
         footer {
             text-align: center;
-            padding: 1.5rem;
-            color: #777;
+            padding: 0.8rem 1rem 2rem;
+            color: var(--muted);
             font-size: 0.9rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                width: calc(100% - 1rem);
+                margin: 1rem auto;
+                border-radius: 16px;
+                padding: 1rem;
+            }
+
+            .project-list li {
+                padding: 0.75rem;
+            }
+
+            .project-title {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 
 <body>
-
     <div class="container">
-
         <header>
             <h1>Projects</h1>
-            <p>Finished, on-going projects.</p>
+            <p>Finished and on-going projects.</p>
         </header>
 
-        <ul class="article-list">
-
+        <ul class="project-list">
             <li>
-                <div class="article-title">
-                    <a href="https://github.com/Gauss963/NTU-Dynamic-Strain" target="_blank"
-                        rel="noopener noreferrer">Dynamic strain in laboratory earthquake</a>
+                <div class="project-title">
+                    <a href="https://github.com/Gauss963/NTU-Dynamic-Strain" target="_blank" rel="noopener noreferrer">Dynamic strain in laboratory earthquake</a>
                 </div>
-                <div class="article-meta">
+                <div class="project-meta">
                     Started on 2025-01-01 · Keywords: FEM, LEFM, laboratory earthquake, PMMA
                 </div>
             </li>
 
             <li>
-                <div class="article-title">
-                    <a href="https://github.com/Gauss963/TEC-Plot" target="_blank" rel="noopener noreferrer">Structural
-                        health monitoring with QSIS</a>
+                <div class="project-title">
+                    <a href="https://github.com/Gauss963/TEC-Plot" target="_blank" rel="noopener noreferrer">Structural health monitoring with QSIS</a>
                 </div>
-                <div class="article-meta">
+                <div class="project-meta">
                     Started on 2023-06-30 · Keywords: structural health monitoring, QSIS, seismic signal analysis
                 </div>
             </li>
-            
+
             <li>
-                <div class="article-title">
-                    <a href="https://github.com/Gauss963/SeismicTorch" target="_blank" rel="noopener noreferrer">
-                        CNN based seismic signal identification</a>
+                <div class="project-title">
+                    <a href="https://github.com/Gauss963/SeismicTorch" target="_blank" rel="noopener noreferrer">CNN based seismic signal identification</a>
                 </div>
-                <div class="article-meta">
+                <div class="project-meta">
                     Started on 2023-06-30 · Keywords: CNN, seismic signal identification
                 </div>
             </li>
-            
+
             <li>
-                <div class="article-title">
-                    <a href="https://github.com/Gauss963/LoveWave-Solver" target="_blank" rel="noopener noreferrer">
-                        Love Wave Simulation</a>
+                <div class="project-title">
+                    <a href="https://github.com/Gauss963/LoveWave-Solver" target="_blank" rel="noopener noreferrer">Love Wave Simulation</a>
                 </div>
-                <div class="article-meta">
+                <div class="project-meta">
                     Started on 2023-06-30 · Keywords: Love wave, simulation, solver
                 </div>
             </li>
-            
+
             <li>
-                <div class="article-title">
-                    <a href="https://github.com/Gauss963/Python-Plotting-Specifications" target="_blank" rel="noopener noreferrer">
-                        Python plotting specifications</a>
+                <div class="project-title">
+                    <a href="https://github.com/Gauss963/Python-Plotting-Specifications" target="_blank" rel="noopener noreferrer">Python plotting specifications</a>
                 </div>
-                <div class="article-meta">
+                <div class="project-meta">
                     Started on 2024-03-25 · Keywords: Python, plotting, specifications
                 </div>
             </li>
-            
+
             <li>
-                <div class="article-title">
-                    <a href="https://github.com/Gauss963/AcademicReport" target="_blank" rel="noopener noreferrer">
-                        LaTeX report template </a>
+                <div class="project-title">
+                    <a href="https://github.com/Gauss963/AcademicReport" target="_blank" rel="noopener noreferrer">LaTeX report template</a>
                 </div>
-                <div class="article-meta">
+                <div class="project-meta">
                     Started on 2024-03-25 · Keywords: LaTeX, Academic report, template
                 </div>
             </li>
-            
+
             <li>
-                <div class="article-title">
-                    <a href="https://github.com/Gauss963/AcademicBeamer" target="_blank" rel="noopener noreferrer">
-                        LaTeX slide template </a>
+                <div class="project-title">
+                    <a href="https://github.com/Gauss963/AcademicBeamer" target="_blank" rel="noopener noreferrer">LaTeX slide template</a>
                 </div>
-                <div class="article-meta">
+                <div class="project-meta">
                     Started on 2024-03-25 · Keywords: LaTeX, Academic slide, template
                 </div>
             </li>
-            
-
         </ul>
 
         <a class="back" href="index.html">← Back to Home</a>
-
     </div>
 
     <footer>

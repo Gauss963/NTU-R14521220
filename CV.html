@@ -7,102 +7,173 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+        :root {
+            --bg: #f5f5f7;
+            --surface: #ffffff;
+            --surface-soft: #fbfbfd;
+            --text: #1d1d1f;
+            --muted: #6e6e73;
+            --line: #e2e2e7;
+            --accent: #1d4f91;
+            --shadow: 0 14px 30px rgba(15, 23, 42, 0.07);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f8;
-            color: #222;
-            line-height: 1.6;
+            font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
         }
 
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: #ffffff;
-            padding: 40px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            border-radius: 8px;
+            width: min(980px, calc(100% - 2rem));
+            margin: 2rem auto;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
         }
 
         header {
-            border-bottom: 3px solid #002147;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.2rem;
-            color: #002147;
+            font-size: clamp(2rem, 3vw, 2.7rem);
+            letter-spacing: -0.01em;
         }
 
         header p {
-            margin-top: 8px;
-            font-size: 1rem;
+            margin: 0.5rem 0 0;
+            color: var(--muted);
         }
 
         section {
-            margin-bottom: 36px;
+            margin-bottom: 1.1rem;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 1rem;
+            background: var(--surface-soft);
         }
 
         section h2 {
-            font-size: 1.4rem;
-            color: #002147;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 6px;
-            margin-bottom: 18px;
+            margin: 0 0 0.7rem;
+            font-size: 1.2rem;
+            color: #232326;
+        }
+
+        h3 {
+            margin: 1rem 0 0.5rem;
+            font-size: 1rem;
+            color: #2d2d30;
         }
 
         .entry {
-            margin-bottom: 20px;
+            margin-bottom: 0.95rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .entry:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: 0;
         }
 
         .entry-title {
-            font-weight: bold;
+            font-weight: 700;
         }
 
         .entry-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 0.95rem;
+            gap: 0.7rem;
+            align-items: flex-start;
         }
 
         .date {
-            background-color: #002147;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
+            background: #1f1f22;
+            color: #ffffff;
+            padding: 0.16rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            white-space: nowrap;
         }
 
         .affiliation {
             font-style: italic;
-            margin-top: 2px;
+            margin-top: 0.22rem;
+            color: var(--muted);
         }
 
-        ul {
-            margin-top: 8px;
-            padding-left: 20px;
-        }
-
+        ul,
         ol {
-            padding-left: 20px;
+            margin: 0.5rem 0 0;
+            padding-left: 1.2rem;
         }
 
-        .publication {
-            margin-bottom: 10px;
+        li {
+            margin-bottom: 0.25rem;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back {
+            margin-top: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 0.52rem 0.92rem;
+            color: #2f2f32;
+            background: #ffffff;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            background: #f4f4f6;
+            text-decoration: none;
         }
 
         footer {
             text-align: center;
-            padding: 1.5rem;
-            color: #777;
+            padding: 0.8rem 1rem 2rem;
+            color: var(--muted);
             font-size: 0.9rem;
         }
 
-        .back {
-            margin-top: 30px;
-            display: inline-block;
+        @media (max-width: 700px) {
+            .container {
+                width: calc(100% - 1rem);
+                margin: 1rem auto;
+                border-radius: 16px;
+                padding: 1rem;
+            }
+
+            .entry-meta {
+                flex-direction: column;
+            }
+
+            .date {
+                align-self: flex-start;
+            }
         }
     </style>
 </head>
@@ -219,7 +290,6 @@
                     <li>Integrated Barnes-Hut algorithm.</li>
                 </ul>
             </div>
-
         </section>
 
         <section>
@@ -236,12 +306,10 @@
 
             <h3>Peer-Reviewed Journal Publications</h3>
             <ol>
-
                 <li>
                     Chun-Yu Ke, <strong>Gauss T. Chang</strong>, Gregory C. McLaskey,
                     David S. Kammer, Chris Marone. (2026).
-                    <em>Nonlocal Elastic Unloading as a Mechanism for Breakdown Work Scaling in Laboratory
-                        Earthquakes</em>.
+                    <em>Nonlocal Elastic Unloading as a Mechanism for Breakdown Work Scaling in Laboratory Earthquakes</em>.
                     Earth and Planetary Science Letters, XX, XXXX.
                     doi: doi.url.replace.with.real.one.
                 </li>
@@ -256,19 +324,17 @@
                     <strong>Gauss T. Chang</strong> et al. (In Preparation).
                     <em>Finite Element Methodology paper</em>.
                 </li>
-
             </ol>
 
             <h3>Selected Conference Abstracts</h3>
             <ol>
-
                 <li>
                     <strong>Gauss T. Chang</strong>, Chun-Yu Ke.
                     <em>Secondary Weakening in dm-Scale Laboratory Earthquakes:
                         Frictional Origin or Rigid-Body Artifact?</em>
                     Japan Geoscience Union Meeting 2026,
                     Makuhari Messe, Chiba, Japan,
-                    24–29 May 2026.
+                    24-29 May 2026.
                 </li>
 
                 <li>
@@ -276,7 +342,7 @@
                     <em>Earthquake Stress-Drop Estimation in Laboratory Experiment with Machine Learning</em>.
                     Japan Geoscience Union Meeting 2025,
                     Makuhari Messe, Chiba, Japan,
-                    25–30 May 2025.
+                    25-30 May 2025.
                 </li>
 
                 <li>
@@ -285,7 +351,7 @@
                     <em>Orchestrating Structural Safety with QSIS: Vision for Extensible Building Arrays</em>.
                     Japan Geoscience Union Meeting 2025,
                     Makuhari Messe, Chiba, Japan,
-                    25–30 May 2025.
+                    25-30 May 2025.
                 </li>
 
                 <li>
@@ -294,7 +360,7 @@
                     <em>Earthquake Rupture Speed Dependence on Normal Stress in Laboratory Experiments</em>.
                     EGU General Assembly 2025,
                     Vienna, Austria,
-                    27 April–2 May 2025.
+                    27 April-2 May 2025.
                 </li>
 
                 <li>
@@ -303,16 +369,15 @@
                     <em>QSIS: A Scalable and Cost-Effective Solution for Advanced Structural Seismic Monitoring</em>.
                     AGU Fall Meeting 2024,
                     Washington, D.C.,
-                    9–13 December 2024.
+                    9-13 December 2024.
                 </li>
 
                 <li>
                     <strong>Gauss T. Chang</strong>, Chris Marone, Chun-Yu Ke.
-                    <em>Inferring Earthquake Stress Drops with Passive Acoustics in Laboratory Experiments Using Machine
-                        Learning</em>.
+                    <em>Inferring Earthquake Stress Drops with Passive Acoustics in Laboratory Experiments Using Machine Learning</em>.
                     Taiwan Geosciences Assembly 2025,
                     Nangang, Taipei, Taiwan,
-                    16–19 June 2025.
+                    16-19 June 2025.
                 </li>
 
                 <li>
@@ -321,7 +386,7 @@
                     <em>Natural Frequencies of Low-Rise Reinforced Concrete Buildings Determined With QSIS</em>.
                     Taiwan Geosciences Assembly 2025,
                     Nangang, Taipei, Taiwan,
-                    16–19 June 2025.
+                    16-19 June 2025.
                 </li>
 
                 <li>
@@ -330,15 +395,12 @@
                     <em>Toward Structural Health Monitoring with QSIS Network</em>.
                     TEC24 Annual Meeting,
                     Tainan, Taiwan,
-                    23–24 October 2024.
+                    23-24 October 2024.
                 </li>
-
             </ol>
         </section>
 
-
         <a class="back" href="index.html">← Back to Home</a>
-
     </div>
 
     <footer>

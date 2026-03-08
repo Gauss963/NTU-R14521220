@@ -32,6 +32,8 @@
             margin-bottom: 10px;
             color: #002147;
             font-size: 1.8rem;
+            line-height: 1.35;
+            word-break: break-word;
         }
 
         .meta {
@@ -73,6 +75,50 @@
         .back {
             margin-top: 40px;
             display: inline-block;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                margin: 18px auto;
+                width: calc(100% - 24px);
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                line-height: 1.65;
+            }
+
+            .container {
+                width: calc(100% - 16px);
+                margin: 10px auto;
+                padding: 16px;
+                border-radius: 6px;
+            }
+
+            header h1 {
+                font-size: 1.35rem;
+                margin-bottom: 8px;
+            }
+
+            .meta,
+            .keywords {
+                font-size: 0.9rem;
+            }
+
+            h2 {
+                margin-top: 28px;
+                font-size: 1.2rem;
+            }
+
+            p {
+                font-size: 0.97rem;
+            }
+
+            .back {
+                margin-top: 28px;
+            }
         }
     </style>
 </head>

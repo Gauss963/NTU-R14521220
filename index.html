@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en-US">
 
 <head>
     <meta charset="UTF-8">
@@ -7,288 +7,514 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+        :root {
+            --bg: #f5f5f7;
+            --surface: #ffffff;
+            --surface-soft: #fbfbfd;
+            --text: #1d1d1f;
+            --text-muted: #6e6e73;
+            --primary: #1d4f91;
+            --primary-strong: #163f74;
+            --accent: #2f82ff;
+            --line: #e3e3e8;
+            --shadow: 0 16px 36px rgba(17, 24, 39, 0.08);
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --container: 1100px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f8;
-            color: #333;
-            line-height: 1.6;
+            padding: 0;
         }
 
-        header {
-            background-color: #002147;
-            color: white;
-            padding: 2.5rem 1rem;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.2rem;
-        }
-
-        header p {
-            margin-top: 0.5rem;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        main {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 2.5rem;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-        }
-
-        section {
-            margin-bottom: 2.5rem;
-        }
-
-        h2 {
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 0.4rem;
-            margin-bottom: 1rem;
-            color: #002147;
-        }
-
-        ul {
-            padding-left: 1.2rem;
-        }
-
-        li {
-            margin-bottom: 0.4rem;
+        body {
+            font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.65;
+            background: var(--bg);
         }
 
         a {
-            color: #1a73e8;
+            color: var(--primary);
             text-decoration: none;
         }
 
         a:hover {
-            text-decoration: underline;
+            color: var(--primary-strong);
         }
 
-        .cv-button {
-            display: inline-block;
-            margin-top: 0.8rem;
-            padding: 0.45rem 1.1rem;
-            border: 1.5px solid #002147;
-            color: #002147;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            background-color: transparent;
-            transition: all 0.2s ease;
+        .page-wrap {
+            width: min(var(--container), calc(100% - 2rem));
+            margin: 2rem auto 3rem;
         }
 
-        .cv-button:hover {
-            background-color: #002147;
-            color: white;
+        .hero {
+            position: relative;
+            overflow: hidden;
+            border-radius: 26px;
+            background: linear-gradient(180deg, #ffffff, #f9f9fb);
+            color: var(--text);
+            box-shadow: var(--shadow);
+            padding: 2.8rem;
+            border: 1px solid var(--line);
         }
 
-        .cv-button+.cv-button {
-            margin-left: 0.6rem;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.8rem;
+            align-items: end;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.84rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            padding: 0.32rem 0.65rem;
+            border: 1px solid #d6d6dc;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+            background: #ffffff;
+            color: #6e6e73;
         }
 
-        .article-title {
-            font-size: 1.0rem;
-            font-weight: bold;
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.12;
+            margin: 0;
+            letter-spacing: 0.01em;
+        }
+
+        .subtitle {
+            max-width: 62ch;
+            color: var(--text-muted);
+            margin: 0.9rem 0 1.6rem;
+            font-size: 1.05rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            padding: 0.62rem 1rem;
+            border: 1.5px solid transparent;
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: #1d1d1f;
+            color: #ffffff;
+            box-shadow: 0 10px 18px rgba(29, 29, 31, 0.16);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 14px 22px rgba(29, 29, 31, 0.22);
+            color: #ffffff;
+        }
+
+        .btn-ghost {
+            background: #ffffff;
+            border-color: #d6d6dc;
+            color: var(--text);
+        }
+
+        .btn-ghost:hover {
+            background: #f0f0f3;
+            color: var(--text);
+        }
+
+        .hero-panel {
+            background: #ffffff;
+            border: 1px solid #dfdfe4;
+            border-radius: 14px;
+            padding: 1rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-panel p {
+            margin: 0;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
+
+        .hero-panel strong {
+            display: block;
+            color: var(--text);
+            font-size: 1.04rem;
+            margin-bottom: 0.2rem;
+        }
+
+        main {
+            margin-top: 1.8rem;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 1.35rem 1.35rem 1.2rem;
+            box-shadow: 0 10px 30px rgba(8, 30, 56, 0.06);
+            animation: fadeUp 0.5s ease both;
+        }
+
+        .card h2 {
+            margin: 0 0 0.8rem;
+            font-size: 1.2rem;
+            letter-spacing: 0.01em;
+            color: var(--primary-strong);
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        .about {
+            grid-column: span 7;
+        }
+
+        .interest {
+            grid-column: span 5;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .meta-list,
+        .plain-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .plain-list li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.45rem;
+            color: var(--text-muted);
+        }
+
+        .plain-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.66rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 99px;
+            background: var(--accent);
+        }
+
+        .meta-list li {
+            margin-bottom: 0.75rem;
+            padding: 0.82rem 0.9rem;
+            border: 1px solid var(--line);
+            background: var(--surface-soft);
+            border-radius: var(--radius-md);
+            transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .meta-list li:hover {
+            transform: translateY(-2px);
+            border-color: rgba(11, 58, 111, 0.35);
+            box-shadow: 0 8px 18px rgba(8, 30, 56, 0.08);
+        }
+
+        .item-title {
+            font-weight: 700;
+            font-size: 0.98rem;
+            margin-bottom: 0.12rem;
+            color: var(--text);
+        }
+
+        .item-title a {
+            color: inherit;
+        }
+
+        .item-title a:hover {
+            color: var(--primary);
+        }
+
+        .item-meta {
+            font-size: 0.86rem;
+            color: #617692;
+        }
+
+        .section-action {
+            margin-top: 0.7rem;
+        }
+
+        .section-action .btn {
+            border: 1px solid var(--line);
+            background: #fff;
+            color: var(--primary);
+        }
+
+        .section-action .btn:hover {
+            border-color: rgba(11, 58, 111, 0.45);
+            box-shadow: 0 8px 16px rgba(8, 30, 56, 0.08);
+        }
+
+        .contact-list {
+            margin: 0;
+            padding-left: 1.1rem;
+        }
+
+        .contact-list li {
+            margin-bottom: 0.42rem;
+            color: var(--text-muted);
+        }
+
+        .contact-list a {
+            word-break: break-word;
+        }
+
+        .orcid-icon {
+            vertical-align: middle;
+            margin-right: 4px;
         }
 
         footer {
+            margin: 1.15rem 0 0;
             text-align: center;
-            padding: 1.5rem;
-            color: #777;
+            color: #637b97;
             font-size: 0.9rem;
+            padding: 1rem 0 0.5rem;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                padding: 2.2rem 1.4rem;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about,
+            .interest {
+                grid-column: span 12;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-wrap {
+                width: min(var(--container), calc(100% - 1rem));
+                margin-top: 1rem;
+            }
+
+            .hero {
+                border-radius: 20px;
+                padding: 1.6rem 1.1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 0.97rem;
+            }
+
+            .card {
+                border-radius: 14px;
+                padding: 1rem;
+            }
+
+            .meta-list li {
+                padding: 0.72rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .hero-actions {
+                width: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
-
-    <header>
-        <h1>Gauss Te-Chuan Chang</h1>
-        <p>Earthquake Source Physics | Seismology | Structural Dynamics</p>
-    </header>
-
-    <main>
-
-        <section>
-            <h2>About Me</h2>
-            <p>
-                I am a Graduate student at National Taiwan University
-                in Structural Engineering.
-                My research interests include seismology, structural dynamics,
-                earthquake engineering, and numerical modeling.
-            </p>
-
-            <a class="cv-button" href="CV.html">View Full CV</a>
-            <!-- <a class="cv-button" href="CV/CV-2P.pdf" download>Download View Full (PDF)</a> -->
-            <a class="cv-button" href="CV/CV-2P.pdf" target="_blank" rel="noopener noreferrer">Download Full CV
-                (PDF)</a>
-        </section>
-
-        <section>
-            <h2>Research Interests</h2>
-            <ul>
-                <li>Earthquake source physics and seismic signal analysis</li>
-                <li>Structural health monitoring and dynamic response</li>
-                <li>Finite element modeling and fracture mechanics</li>
-                <li>Scientific computing (C++, Python, Fortran)</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Articles</h2>
-            <ul class="article-list">
-                <li>
-                    <div class="article-title">
-                        <a href="Article-1.html">Example Article with Figures</a>
+    <div class="page-wrap">
+        <header class="hero">
+            <div class="hero-grid">
+                <div>
+                    <span class="badge">National Taiwan University</span>
+                    <h1>Gauss Te-Chuan Chang</h1>
+                    <p class="subtitle">Earthquake Source Physics | Seismology | Structural Dynamics</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="CV.html">View Full CV</a>
+                        <a class="btn btn-ghost" href="CV/CV-2P.pdf" target="_blank" rel="noopener noreferrer">Download Full CV (PDF)</a>
                     </div>
-                    <div class="article-meta">
-                        Posted on 2025-01-01 · Keywords: Seismology, FEM
-                    </div>
-                </li>
-
-                <li>
-                    <div class="article-title">
-                        <a href="Article-3.html">November Sky</a>
-                    </div>
-                    <div class="article-meta">
-                        Posted on 2024-12-01 · Keywords: Reflection
-                    </div>
-                </li>
-
-                <li>
-                    <div class="article-title">
-                        <a href="Article-2.html">Goodbye, 2024 — A Letter To Myself, A Reflection</a>
-                    </div>
-                    <div class="article-meta">
-                        Posted on 2025-01-01 · Keywords: Reflection
-                    </div>
-                </li>
-
-                <li>
-                    <div class="article-title">
-                        <a href="Article-4.html">Japan Geoscience Union Meeting 2025</a>
-                    </div>
-                    <div class="article-meta">
-                        Posted on 2025-12-17 · Keywords: JPGU, Conference
-                    </div>
-                </li>
-
-                <li>
-                    <div class="article-title">
-                        <a href="Article-6.html">Japan Geoscience Union Meeting 2026</a>
-                    </div>
-                    <div class="article-meta">
-                        Posted on 2026-2-9 · Keywords: JPGU, Conference
-                    </div>
-                </li>
-            </ul>
-            <a class="cv-button" href="Articles.html">View Full article list</a>
-        </section>
-
-        <section>
-            <h2>Projects</h2>
-            <ul class="project-list">
-                <li>
-                    <div class="article-title">
-                        <a href="https://github.com/Gauss963/NTU-Dynamic-Strain" target="_blank"
-                            rel="noopener noreferrer">Dynamic strain in laboratory earthquake</a>
-                    </div>
-                    <div class="article-meta">
-                        Started on 2025-01-01 · Keywords: FEM, LEFM, laboratory earthquake, PMMA
-                    </div>
-                </li>
-
-                <li>
-                    <div class="article-title">
-                        <a href="https://github.com/Gauss963/TEC-Plot" target="_blank"
-                            rel="noopener noreferrer">Structural
-                            health monitoring with QSIS</a>
-                    </div>
-                    <div class="article-meta">
-                        Started on 2023-06-30 · Keywords: structural health monitoring, QSIS, seismic signal analysis
-                    </div>
-                </li>
-
-                <li>
-                    <div class="article-title">
-                        <a href="https://github.com/Gauss963/SeismicTorch" target="_blank" rel="noopener noreferrer">
-                            CNN based seismic signal identification</a>
-                    </div>
-                    <div class="article-meta">
-                        Started on 2023-06-30 · Keywords: CNN, seismic signal identification
-                    </div>
-                </li>
-
-                <li>
-                <div class="article-title">
-                    <a href="https://github.com/Gauss963/LoveWave-Solver" target="_blank" rel="noopener noreferrer">
-                        Love Wave Simulation</a>
                 </div>
-                <div class="article-meta">
-                    Started on 2023-06-30 · Keywords: Love wave, simulation, solver
+                <aside class="hero-panel">
+                    <strong>Research Profile</strong>
+                    <p>Graduate student in Structural Engineering, focusing on seismology, earthquake engineering, and numerical modeling.</p>
+                </aside>
+            </div>
+        </header>
+
+        <main>
+            <section class="grid">
+                <article class="card about">
+                    <h2>About Me</h2>
+                    <p>
+                        I am a graduate student at National Taiwan University in Structural Engineering. My research
+                        interests include seismology, structural dynamics, earthquake engineering, and numerical
+                        modeling.
+                    </p>
+                </article>
+
+                <article class="card interest">
+                    <h2>Research Interests</h2>
+                    <ul class="plain-list">
+                        <li>Earthquake source physics and seismic signal analysis</li>
+                        <li>Structural health monitoring and dynamic response</li>
+                        <li>Finite element modeling and fracture mechanics</li>
+                        <li>Scientific computing (C++, Python, Fortran)</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section class="card full">
+                <h2>Articles</h2>
+                <ul class="meta-list">
+                    <li>
+                        <div class="item-title"><a href="Article-1.html">Example Article with Figures</a></div>
+                        <div class="item-meta">Posted on 2025-01-01 · Keywords: Seismology, FEM</div>
+                    </li>
+                    <li>
+                        <div class="item-title"><a href="Article-3.html">November Sky</a></div>
+                        <div class="item-meta">Posted on 2024-12-01 · Keywords: Reflection</div>
+                    </li>
+                    <li>
+                        <div class="item-title"><a href="Article-2.html">Goodbye, 2024 - A Letter To Myself, A Reflection</a></div>
+                        <div class="item-meta">Posted on 2025-01-01 · Keywords: Reflection</div>
+                    </li>
+                    <li>
+                        <div class="item-title"><a href="Article-4.html">Japan Geoscience Union Meeting 2025</a></div>
+                        <div class="item-meta">Posted on 2025-12-17 · Keywords: JPGU, Conference</div>
+                    </li>
+                    <li>
+                        <div class="item-title"><a href="Article-6.html">Japan Geoscience Union Meeting 2026</a></div>
+                        <div class="item-meta">Posted on 2026-02-09 · Keywords: JPGU, Conference</div>
+                    </li>
+                </ul>
+                <div class="section-action">
+                    <a class="btn" href="Articles.html">View Full Article List</a>
                 </div>
-            </li>
-            </ul>
-            <a class="cv-button" href="Projects.html">View Full project list</a>
-        </section>
+            </section>
 
-        <section>
-            <h2>Contact</h2>
-            <ul>
-                <li>
-                    Address:
-                    <a href="https://maps.app.goo.gl/BjfgHzYVYbF1jaer7" target="_blank">
-                        Rm. 513, No. 188, Sec. 3, Xinhai Rd., Da'an Dist.,
-                        Taipei City 106327, Taiwan (R.O.C.)
-                    </a>
-                </li>
+            <section class="card full">
+                <h2>Projects</h2>
+                <ul class="meta-list">
+                    <li>
+                        <div class="item-title">
+                            <a href="https://github.com/Gauss963/NTU-Dynamic-Strain" target="_blank" rel="noopener noreferrer">Dynamic strain in laboratory earthquake</a>
+                        </div>
+                        <div class="item-meta">Started on 2025-01-01 · Keywords: FEM, LEFM, laboratory earthquake, PMMA</div>
+                    </li>
+                    <li>
+                        <div class="item-title">
+                            <a href="https://github.com/Gauss963/TEC-Plot" target="_blank" rel="noopener noreferrer">Structural health monitoring with QSIS</a>
+                        </div>
+                        <div class="item-meta">Started on 2023-06-30 · Keywords: structural health monitoring, QSIS, seismic signal analysis</div>
+                    </li>
+                    <li>
+                        <div class="item-title">
+                            <a href="https://github.com/Gauss963/SeismicTorch" target="_blank" rel="noopener noreferrer">CNN based seismic signal identification</a>
+                        </div>
+                        <div class="item-meta">Started on 2023-06-30 · Keywords: CNN, seismic signal identification</div>
+                    </li>
+                    <li>
+                        <div class="item-title">
+                            <a href="https://github.com/Gauss963/LoveWave-Solver" target="_blank" rel="noopener noreferrer">Love Wave Simulation</a>
+                        </div>
+                        <div class="item-meta">Started on 2023-06-30 · Keywords: Love wave, simulation, solver</div>
+                    </li>
+                </ul>
+                <div class="section-action">
+                    <a class="btn" href="Projects.html">View Full Project List</a>
+                </div>
+            </section>
 
-                <li>
-                    Email:
-                    <a href="mailto:R14521220@ntu.edu.tw">
-                        R14521220@ntu.edu.tw
-                    </a>
-                </li>
+            <section class="card full">
+                <h2>Contact</h2>
+                <ul class="contact-list">
+                    <li>
+                        Address:
+                        <a href="https://maps.app.goo.gl/BjfgHzYVYbF1jaer7" target="_blank" rel="noopener noreferrer">
+                            Rm. 513, No. 188, Sec. 3, Xinhai Rd., Da'an Dist., Taipei City 106327, Taiwan (R.O.C.)
+                        </a>
+                    </li>
+                    <li>
+                        Email:
+                        <a href="mailto:R14521220@ntu.edu.tw">R14521220@ntu.edu.tw</a>
+                    </li>
+                    <li>
+                        GitHub:
+                        <a href="https://github.com/Gauss963" target="_blank" rel="noopener noreferrer">github.com/Gauss963</a>
+                    </li>
+                    <li>
+                        ORCID:
+                        <a href="https://orcid.org/0009-0001-5788-1860" target="_blank" rel="noopener noreferrer">
+                            <img class="orcid-icon" src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID iD">
+                            0009-0001-5788-1860
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </main>
 
-                <li>
-                    GitHub:
-                    <a href="https://github.com/Gauss963" target="_blank">
-                        github.com/Gauss963
-                    </a>
-                </li>
-
-                <li>
-                    ORCID:
-                    <a href="https://orcid.org/0009-0001-5788-1860" target="_blank" rel="noopener noreferrer">
-                        <img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID iD"
-                            style="vertical-align: middle; margin-right: 4px;">
-                        0009-0001-5788-1860
-                    </a>
-                </li>
-            </ul>
-        </section>
-
-    </main>
-
-    <footer>
-        © 2026 Gauss Te-Chuan Chang
-    </footer>
-
+        <footer>
+            &copy; 2026 Gauss Te-Chuan Chang
+        </footer>
+    </div>
 </body>
 
 </html>

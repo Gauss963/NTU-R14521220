@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Old Instagram Profile (CSS Only)</title>
+  <style>
+    :root{
+      --ig-blue-1:#4a86b9;
+      --ig-blue-2:#2f6fa8;
+      --ig-blue-3:#2a5f92;
+      --card:#f5f5f5;
+      --border:#cfcfcf;
+      --text:#2b2b2b;
+      --muted:#7a7a7a;
+      --shadow:0 2px 0 rgba(0,0,0,.08);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background:#d9d9d9; /* 舊 iOS app 那種灰底 */
+      color:var(--text);
+    }
+
+    /* ====== App frame (讓它像手機畫面) ====== */
+    .phone{
+      width:min(414px, 100%);
+      margin:0 auto;
+      background:#d9d9d9;
+      min-height:100vh;
+      padding-bottom:76px; /* 留底部 nav 空間 */
+    }
+
+    /* ====== Top bar ====== */
+    .topbar{
+      height:52px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:sticky;
+      top:0;
+      z-index:10;
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      background:linear-gradient(var(--ig-blue-1), var(--ig-blue-2));
+      border-bottom:1px solid rgba(0,0,0,.25);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
+    }
+    .topbar .title{
+      font-size:17px;
+      text-shadow:0 -1px 0 rgba(0,0,0,.25);
+    }
+    .topbar .gear{
+      position:absolute;
+      right:12px;
+      width:30px;
+      height:30px;
+      border-radius:6px;
+      border:1px solid rgba(255,255,255,.35);
+      background:linear-gradient(rgba(255,255,255,.18), rgba(0,0,0,.08));
+      display:grid;
+      place-items:center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
+    }
+    .topbar .gear:before{
+      content:"⚙";
+      font-size:18px;
+      line-height:1;
+      filter:drop-shadow(0 -1px 0 rgba(0,0,0,.25));
+    }
+
+    /* ====== Cards ====== */
+    .card{
+      margin:10px;
+      border:1px solid var(--border);
+      border-radius:8px;
+      overflow:hidden;
+      background:linear-gradient(#ffffff, #f0f0f0);
+      box-shadow:var(--shadow);
+    }
+
+    /* ====== Stats bar ====== */
+    .stats{
+      display:grid;
+      grid-template-columns: 92px 1fr 1fr 1fr;
+      gap:0;
+      align-items:stretch;
+      background:linear-gradient(#fdfdfd, #ededed);
+    }
+    .avatar-wrap{
+      padding:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-right:1px solid var(--border);
+      background:linear-gradient(#f8f8f8, #e9e9e9);
+    }
+    .avatar{
+      width:62px;
+      height:62px;
+      border-radius:6px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.6), rgba(255,255,255,0) 50%),
+        #bdbdbd;
+      border:1px solid #b3b3b3;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+      overflow:hidden;
+    }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:grayscale(1) contrast(1.05);
+    }
+
+    .stat{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      text-align:center;
+      border-right:1px solid var(--border);
+    }
+    .stat:last-child{ border-right:none; }
+    .stat .num{
+      font-weight:800;
+      font-size:18px;
+      padding-top:8px;
+      color:#3a3a3a;
+      text-shadow:0 1px 0 rgba(255,255,255,.6);
+    }
+    .stat .label{
+      font-size:12px;
+      padding-bottom:8px;
+      color:#8b8b8b;
+      text-transform:lowercase;
+    }
+
+    /* ====== Edit profile row ====== */
+    .row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 12px;
+      background:linear-gradient(#fafafa, #eaeaea);
+      border-top:1px solid var(--border);
+      border-bottom:1px solid rgba(255,255,255,.65);
+    }
+    .row .row-text{
+      font-weight:700;
+      color:#4b4b4b;
+    }
+    .row .chev{
+      color:#8b8b8b;
+      font-size:20px;
+      line-height:1;
+    }
+
+    /* ====== Profile info block ====== */
+    .profile{
+      padding:12px 12px 14px;
+      background:linear-gradient(#fbfbfb, #efefef);
+    }
+    .profile .name{
+      font-weight:800;
+      font-size:20px;
+      margin:2px 0 6px;
+    }
+    .profile .meta{
+      color:#6f6f6f;
+      font-size:14px;
+      margin:0 0 6px;
+    }
+    .profile .bio{
+      color:#4a4a4a;
+      font-size:14px;
+      margin:0 0 6px;
+    }
+    .profile .link{
+      color:#2a6fb0;
+      font-size:14px;
+      text-decoration:none;
+      border-bottom:1px solid rgba(42,111,176,.25);
+    }
+
+    /* ====== Tabs (grid/list/map/tag) ====== */
+    .tabs{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      background:linear-gradient(#f7f7f7, #e3e3e3);
+      border-top:1px solid var(--border);
+    }
+    .tab{
+      height:54px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-right:1px solid var(--border);
+      position:relative;
+    }
+    .tab:last-child{ border-right:none; }
+    .tab.active{
+      background:linear-gradient(#ffffff, #efefef);
+    }
+    .tab.active:after{
+      content:"";
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:-9px;
+      width:0;height:0;
+      border-left:9px solid transparent;
+      border-right:9px solid transparent;
+      border-top:9px solid #efefef;
+      filter:drop-shadow(0 -1px 0 rgba(0,0,0,.12));
+    }
+
+    /* 盡量不用外部 icon：用簡單 CSS 畫符號 */
+    .icon{
+      width:22px;height:22px;
+      opacity:.85;
+      position:relative;
+      filter:drop-shadow(0 1px 0 rgba(255,255,255,.6));
+    }
+    /* grid icon */
+    .icon.grid{
+      background:
+        linear-gradient(#5a5a5a,#5a5a5a) 0 0/6px 6px,
+        linear-gradient(#5a5a5a,#5a5a5a) 8px 0/6px 6px,
+        linear-gradient(#5a5a5a,#5a5a5a) 16px 0/6px 6px,
+        linear-gradient(#5a5a5a,#5a5a5a) 0 8px/6px 6px,
+        linear-gradient(#5a5a5a,#5a5a5a) 8px 8px/6px 6px,
+        linear-gradient(#5a5a5a,#5a5a5a) 16px 8px/6px 6px,
+        linear-gradient(#5a5a5a,#5a5a5a) 0 16px/6px 6px,
+        linear-gradient(#5a5a5a,#5a5a5a) 8px 16px/6px 6px,
+        linear-gradient(#5a5a5a,#5a5a5a) 16px 16px/6px 6px;
+      background-repeat:no-repeat;
+      border-radius:3px;
+    }
+    /* list icon */
+    .icon.list:before{
+      content:"";
+      position:absolute;left:0;right:0;top:2px;height:2px;
+      background:#5a5a5a;
+      box-shadow:0 6px 0 #5a5a5a, 0 12px 0 #5a5a5a, 0 18px 0 #5a5a5a;
+      border-radius:2px;
+    }
+    /* map pin */
+    .icon.pin{
+      border:2px solid #5a5a5a;
+      border-radius:50% 50% 50% 0;
+      transform:rotate(-45deg);
+      width:18px;height:18px;
+    }
+    .icon.pin:after{
+      content:"";
+      position:absolute;
+      width:6px;height:6px;
+      border-radius:50%;
+      background:#5a5a5a;
+      left:50%;top:50%;
+      transform:translate(-50%,-50%);
+    }
+    /* user/tag icon */
+    .icon.user:before{
+      content:"";
+      position:absolute;
+      width:10px;height:10px;
+      border:2px solid #5a5a5a;
+      border-radius:50%;
+      left:50%;top:2px;
+      transform:translateX(-50%);
+    }
+    .icon.user:after{
+      content:"";
+      position:absolute;
+      width:18px;height:10px;
+      border:2px solid #5a5a5a;
+      border-top:none;
+      border-radius:0 0 10px 10px;
+      left:50%;bottom:0;
+      transform:translateX(-50%);
+    }
+
+    /* ====== Photo grid ====== */
+    .grid{
+      margin:10px;
+      border:1px solid var(--border);
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      background:#fff;
+    }
+    .grid-inner{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:1px;
+      background:#d0d0d0;
+    }
+    .ph{
+      aspect-ratio:1/1;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,.55), rgba(255,255,255,0) 45%),
+        linear-gradient(135deg, #b9c7d6, #8ea3b8);
+      overflow:hidden;
+      position:relative;
+    }
+    .ph img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:saturate(.9) contrast(1.05);
+    }
+    .ph:after{
+      /* 舊 app 感：淡淡暗角 */
+      content:"";
+      position:absolute; inset:0;
+      box-shadow: inset 0 0 22px rgba(0,0,0,.15);
+      pointer-events:none;
+    }
+
+    /* ====== Bottom nav ====== */
+    .bottom{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:0;
+      width:min(414px, 100%);
+      height:66px;
+      background:linear-gradient(#f7f7f7, #dadada);
+      border-top:1px solid rgba(0,0,0,.25);
+      box-shadow:0 -1px 0 rgba(255,255,255,.7);
+      display:grid;
+      grid-template-columns:repeat(5, 1fr);
+      z-index:20;
+    }
+    .navbtn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+    .navicon{
+      width:26px;height:26px;
+      opacity:.9;
+      position:relative;
+      filter:drop-shadow(0 1px 0 rgba(255,255,255,.6));
+    }
+    .navicon.home:before{
+      content:"";
+      position:absolute;left:50%;top:3px;
+      width:18px;height:14px;
+      transform:translateX(-50%);
+      border:2px solid #555;
+      border-bottom:none;
+      clip-path:polygon(50% 0, 100% 40%, 100% 100%, 0 100%, 0 40%);
+      border-radius:2px;
+    }
+    .navicon.star:before{
+      content:"✶";
+      position:absolute;inset:0;
+      display:grid;place-items:center;
+      color:#555;
+      font-size:24px;
+      line-height:1;
+    }
+    .navicon.cam{
+      border:2px solid #555;
+      border-radius:6px;
+    }
+    .navicon.cam:before{
+      content:"";
+      position:absolute;left:50%;top:50%;
+      width:10px;height:10px;
+      border:2px solid #555;
+      border-radius:50%;
+      transform:translate(-50%,-50%);
+    }
+    .navicon.search:before{
+      content:"";
+      position:absolute;left:8px;top:6px;
+      width:12px;height:12px;border:2px solid #555;border-radius:50%;
+    }
+    .navicon.search:after{
+      content:"";
+      position:absolute;left:18px;top:18px;
+      width:9px;height:2px;background:#555;
+      transform:rotate(45deg);
+      border-radius:2px;
+    }
+    .navicon.list:before{
+      content:"";
+      position:absolute;left:4px;right:4px;top:6px;height:2px;
+      background:#555;
+      box-shadow:0 6px 0 #555, 0 12px 0 #555;
+      border-radius:2px;
+    }
+    .navbtn.active:after{
+      content:"";
+      position:absolute;
+      top:0; left:14px; right:14px;
+      height:3px;
+      background:linear-gradient(#6da0cf,#2f6fa8);
+      border-radius:0 0 3px 3px;
+      opacity:.9;
+    }
+
+    /* 小螢幕微調 */
+    @media (max-width:360px){
+      .stats{ grid-template-columns:84px 1fr 1fr 1fr; }
+      .stat .num{ font-size:17px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="phone">
+    <div class="topbar">
+      <div class="title">JOHNBOZINOV</div>
+      <div class="gear" aria-hidden="true"></div>
+    </div>
+
+    <div class="card">
+      <div class="stats">
+        <div class="avatar-wrap">
+          <div class="avatar">
+            <img src="images/profile/728226167.348050.jpg" alt="avatar">
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="num">62</div>
+          <div class="label">posts</div>
+        </div>
+        <div class="stat">
+          <div class="num">364</div>
+          <div class="label">followers</div>
+        </div>
+        <div class="stat">
+          <div class="num">223</div>
+          <div class="label">following</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-text">Edit Your Profile</div>
+        <div class="chev">›</div>
+      </div>
+
+      <div class="profile">
+        <div class="name">john bozinov</div>
+        <p class="meta">wellington, new zealand</p>
+        <p class="bio">all photos taken with iphone</p>
+        <a class="link" href="#" onclick="return false;">society6.com/johnbozinovdigital/prints</a>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active"><span class="icon grid" aria-hidden="true"></span></div>
+        <div class="tab"><span class="icon list" aria-hidden="true"></span></div>
+        <div class="tab"><span class="icon pin" aria-hidden="true"></span></div>
+        <div class="tab"><span class="icon user" aria-hidden="true"></span></div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="grid-inner">
+        <!-- 9 張示意圖：換成你的照片 -->
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-1.JPG" alt=""></div>
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-2.JPG" alt=""></div>
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-1.JPG" alt=""></div>
+
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-2.JPG" alt=""></div>
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-1.JPG" alt=""></div>
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-2.JPG" alt=""></div>
+
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-1.JPG" alt=""></div>
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-2.JPG" alt=""></div>
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-1.JPG" alt=""></div>
+        
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-2.JPG" alt=""></div>
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-1.JPG" alt=""></div>
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-2.JPG" alt=""></div>
+        
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-1.JPG" alt=""></div>
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-2.JPG" alt=""></div>
+        <div class="ph"><img src="images/2025Summary/2025-summary-1-1.JPG" alt=""></div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom" aria-label="Bottom navigation">
+    <div class="navbtn active"><span class="navicon home" aria-hidden="true"></span></div>
+    <div class="navbtn"><span class="navicon star" aria-hidden="true"></span></div>
+    <div class="navbtn"><span class="navicon cam" aria-hidden="true"></span></div>
+    <div class="navbtn"><span class="navicon search" aria-hidden="true"></span></div>
+    <div class="navbtn"><span class="navicon list" aria-hidden="true"></span></div>
+  </nav>
+</body>
+</html>
