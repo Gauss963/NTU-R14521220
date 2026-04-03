@@ -1,24 +1,3 @@
-@font-face {
-    font-family: "Google Sans Flex Web";
-    src: url("fonts/Google_Sans_Flex,Noto_Serif_TC/Google_Sans_Flex/GoogleSansFlex-VariableFont_GRAD,ROND,opsz,slnt,wdth,wght.ttf") format("truetype");
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Noto Serif TC Web";
-    src: url("fonts/Google_Sans_Flex,Noto_Serif_TC/Noto_Serif_TC/NotoSerifTC-VariableFont_wght.ttf") format("truetype");
-    font-weight: 200 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-:root {
-    --font-sans-web: "Google Sans Flex Web", "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --font-serif-cjk-web: "Noto Serif TC Web", "Noto Serif TC", "Songti TC", "PMingLiU", "Times New Roman", serif;
-}
-
 .theme-toggle-checkbox {
     position: fixed;
     width: 1px;
@@ -43,26 +22,13 @@
     box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
     cursor: pointer;
     user-select: none;
-    font-family: var(--font-sans-web);
+    font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.78rem;
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     backdrop-filter: blur(10px);
-}
-
-body.chinese-article {
-    font-family: var(--font-serif-cjk-web) !important;
-}
-
-body.chinese-article .theme-toggle-button,
-body.chinese-article .eyebrow,
-body.chinese-article .meta,
-body.chinese-article .back,
-body.chinese-article .badge,
-body.chinese-article .btn {
-    font-family: var(--font-sans-web) !important;
 }
 
 .theme-toggle-button::before {
