@@ -208,12 +208,22 @@
         }
     </style>
     <link rel="stylesheet" href="dark-mode.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTX5M07K9R"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-MTX5M07K9R');
+</script>
 </head>
 
 <body>
-    <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox" aria-label="Toggle black theme">
+    <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox" aria-label="Toggle dark theme">
     <label for="theme-toggle" class="theme-toggle-button">
-        <span class="theme-toggle-off">Black</span>
+        <span class="theme-toggle-off">Dark</span>
         <span class="theme-toggle-on">Light</span>
     </label>
 
