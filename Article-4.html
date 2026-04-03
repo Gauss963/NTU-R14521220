@@ -7,58 +7,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+        :root {
+            --bg: #f5f5f7;
+            --surface: #ffffff;
+            --text: #1d1d1f;
+            --muted: #6e6e73;
+            --line: #e2e2e7;
+            --accent: #1d4f91;
+            --shadow: 0 14px 30px rgba(15, 23, 42, 0.07);
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f8;
-            color: #222;
-            line-height: 1.7;
+            font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
         }
 
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            width: min(980px, calc(100% - 2rem));
+            margin: 2rem auto;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
         }
 
         header {
-            margin-bottom: 30px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
-        header h1 {
-            margin-bottom: 5px;
-            color: #002147;
-            line-height: 1.35;
-            word-break: break-word;
+        h1 {
+            margin: 0;
+            font-size: clamp(1.9rem, 3vw, 2.5rem);
+            letter-spacing: -0.01em;
         }
 
-        .meta {
-            color: #666;
-            font-size: 0.95rem;
+        header p {
+            margin: 0.45rem 0 0;
+            color: var(--muted);
         }
 
-        figure {
-            margin: 30px auto;
-            text-align: center;
+        .article-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        figure img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ccc;
+        .article-list li {
+            margin-bottom: 0.7rem;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+            background: #fbfbfd;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
-        figcaption {
+        .article-list li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(17, 24, 39, 0.08);
+            border-color: #cfd2dc;
+        }
+
+        .article-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .article-meta {
             font-size: 0.9rem;
-            color: #555;
-            margin-top: 8px;
+            color: var(--muted);
         }
 
         a {
-            color: #1a73e8;
+            color: var(--accent);
             text-decoration: none;
         }
 
@@ -67,152 +99,95 @@
         }
 
         .back {
-            margin-top: 40px;
-            display: inline-block;
-        }
-
-        .summary-img {
-            width: 60%;
-            max-width: 100%;
-            height: auto;
-        }
-
-        blockquote {
-            margin: 30px 0;
-            padding: 16px 24px;
-            background: #f8f9fb;
-            border-left: 4px solid #1a73e8;
-            color: #333;
-        }
-
-
-        .link-list {
-            margin-top: 30px;
-        }
-
-        .link-card {
-            display: block;
-            padding: 18px 22px;
-            margin-bottom: 18px;
-            background: #f8f9fb;
-            border-radius: 6px;
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 0.52rem 0.92rem;
+            color: #2f2f32;
+            background: #ffffff;
             text-decoration: none;
-            color: #002147;
-            transition: all 0.2s ease;
-            border: 1px solid #e5e7eb;
         }
 
-        .link-card:hover {
-            background: #eef3f9;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        .back:hover {
+            background: #f4f4f6;
+            text-decoration: none;
         }
 
-        .link-card span {
-            display: block;
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 4px;
-        }
-        @media (max-width: 900px) {
-            .container {
-                margin: 18px auto;
-                width: calc(100% - 24px);
-                padding: 24px;
-            }
-        }
         @media (max-width: 640px) {
-            body {
-                line-height: 1.65;
-            }
-
             .container {
-                width: calc(100% - 16px);
-                margin: 10px auto;
-                padding: 16px;
-                border-radius: 6px;
+                width: calc(100% - 1rem);
+                margin: 1rem auto;
+                border-radius: 16px;
+                padding: 1rem;
             }
 
-            header h1 {
-                font-size: 1.35rem;
-                margin-bottom: 8px;
+            .article-list li {
+                padding: 0.75rem;
             }
 
-            .meta {
-                font-size: 0.9rem;
-            }
-
-            h2 {
-                margin-top: 28px;
-                font-size: 1.2rem;
-            }
-
-            p,
-            li {
-                font-size: 0.97rem;
-            }
-
-            figure {
-                margin: 20px auto;
-            }
-
-            .summary-img {
-                width: 100%;
-            }
-
-            blockquote {
-                margin: 20px 0;
-                padding: 12px 14px;
-            }
-
-            .link-card {
-                padding: 14px;
-                margin-bottom: 12px;
-            }
-
-            .back {
-                margin-top: 28px;
+            .article-title {
+                font-size: 1rem;
             }
         }
     </style>
+    <link rel="stylesheet" href="dark-mode.css">
 </head>
 
 <body>
+    <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox" aria-label="Toggle black theme">
+    <label for="theme-toggle" class="theme-toggle-button">
+        <span class="theme-toggle-off">Black</span>
+        <span class="theme-toggle-on">Light</span>
+    </label>
 
     <div class="container">
     
         <header>
             <h1>Japan Geoscience Union Meeting 2025</h1>
-            <div class="meta">
-                Posted on 2024-12-17 · Gauss Te-Chuan Chang
-            </div>
+            <p>Posted on 2025-12-17 · Gauss Te-Chuan Chang</p>
+            <p>Conference-related pages and updates for my participation in the Japan Geoscience Union Meeting 2025.</p>
         </header>
-    
-        <div class="link-list">
-    
-            <a class="link-card" href="S-SS05.html">
-                S-SS05 Session Outline
-                <span>Solid Earth Sciences · Fault Mechanics & Crustal Deformation</span>
-            </a>
-    
-            <a class="link-card" href="S-SS10.html">
-                S-SS10 Session Outline
-                <span>Seismology & Earthquake Source Processes</span>
-            </a>
 
-            <a class="link-card"
-                href="Earthquake-Stress-Drop-Estimation-in-Laboratory-Experiment-with-Machine-Learning.html">
-                Earthquake Stress-Drop Estimation in Laboratory Experiment with Machine Learning
-                <span>Poster Presentation · Laboratory Earthquake Physics</span>
-            </a>
+        <ul class="article-list">
+            <li>
+                <div class="article-title">
+                    <a href="S-SS05.html">S-SS05 Session Outline</a>
+                </div>
+                <div class="article-meta">
+                    Solid Earth Sciences · Fault Mechanics & Crustal Deformation
+                </div>
+            </li>
 
-            <a class="link-card" 
-                href="Orchestrating-Structural-Safety-with-QSIS-Vision-for-Extensible-Building-Arrays.html">
-                Orchestrating Structural Safety with QSIS: Vision for Extensible Building Arrays
-                <span>Oral Presentation · Structural Health Monitoring</span>
-            </a>
-    
-        </div>
+            <li>
+                <div class="article-title">
+                    <a href="S-SS10.html">S-SS10 Session Outline</a>
+                </div>
+                <div class="article-meta">
+                    Seismology & Earthquake Source Processes
+                </div>
+            </li>
+
+            <li>
+                <div class="article-title">
+                    <a href="Earthquake-Stress-Drop-Estimation-in-Laboratory-Experiment-with-Machine-Learning.html">Earthquake Stress-Drop Estimation in Laboratory Experiment with Machine Learning</a>
+                </div>
+                <div class="article-meta">
+                    Poster Presentation · Laboratory Earthquake Physics
+                </div>
+            </li>
+
+            <li>
+                <div class="article-title">
+                    <a href="Orchestrating-Structural-Safety-with-QSIS-Vision-for-Extensible-Building-Arrays.html">Orchestrating Structural Safety with QSIS: Vision for Extensible Building Arrays</a>
+                </div>
+                <div class="article-meta">
+                    Oral Presentation · Structural Health Monitoring
+                </div>
+            </li>
+        </ul>
     
         <a class="back" href="Articles.html">← Back to Articles</a>
     
